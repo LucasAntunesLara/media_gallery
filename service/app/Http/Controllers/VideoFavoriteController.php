@@ -12,35 +12,35 @@ class VideoFavoriteController extends Controller {
         $user = JWTAuth::parseToken()->authenticate();
 
         if (!$user) {
-            return response()->json(['error' => 'User not authenticated'], 401);
+            return response()->json(['error' => 'Usuário não autenticado'], 401);
         }
 
         $video = Video::find($videoId);
 
         if (!$video) {
-            return response()->json(['error' => 'Video not found'], 404);
+            return response()->json(['error' => 'Vídeo não encontrado'], 404);
         }
 
         $user->favoriteVideos()->attach($video);
 
-        return response()->json(['message' => 'Video favorited successfully']);
+        return response()->json(['message' => 'Vídeo adicionado aos favoritos com sucesso']);
     }
 
     public function removeFavorite($videoId) {
         $user = JWTAuth::parseToken()->authenticate();
 
         if (!$user) {
-            return response()->json(['error' => 'User not authenticated'], 401);
+            return response()->json(['error' => 'Usuário não autenticado'], 401);
         }
 
         $video = Video::find($videoId);
 
         if (!$video) {
-            return response()->json(['error' => 'Video not found'], 404);
+            return response()->json(['error' => 'Vídeo não encontrado'], 404);
         }
 
         $user->favoriteVideos()->detach($video);
 
-        return response()->json(['message' => 'Video unfavorited successfully']);
+        return response()->json(['message' => 'O vídeo foi removido dos favoritos.']);
     }
 }
