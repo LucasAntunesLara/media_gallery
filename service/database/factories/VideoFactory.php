@@ -15,12 +15,12 @@ class VideoFactory extends Factory {
      */
     public function definition(): array {
         return [
-            'name' => fake()->name(),
-            'url' => fake()->url(),
-            'url' => fake()->randomLetter(),
-            'tags' => fake()->randomLetter(),
-            'isFavourite' => fake()->boolean(),
-            'isPrivate' => fake()->boolean(),
+            'name' => $this->faker->sentence(3),
+            'url' => 'videos/' . $this->faker->uuid() . '.mp4',
+            'thumbnail' => 'images/' . $this->faker->uuid() . '.jpg',
+            'tags' => 'acao, aventura',
+            'isPrivate' => false,
+            'isFavourite' => false,
         ];
     }
 }
